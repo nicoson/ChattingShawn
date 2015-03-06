@@ -3,6 +3,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
+var flag = 0;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -114,10 +115,24 @@ router.get('/post', function(req, res){
 	});
 });
 
+router.get('/post/get', function(req, res){
+	Post.get(null, function(err, posts){
+		if(err){
+			posts = [];
+		}
+		// while(posts[0].time.iden === flag){
+		// 	setTimeout(function(){},1000);
+		// }
+		// flag = posts[0].time.iden;
+		res.send(posts);
+	});
+});
+
 //router.post('/post', checkNotLogin);
 router.post('/post', function(req, res){
 	var currentUser = req.session.user;
 	var post = new Post(currentUser.name, req.body.title, req.body.post);
+	// flag = post.time.iden;
 	post.save(function(err){
 		if(err){
 			req.flash('error', err);

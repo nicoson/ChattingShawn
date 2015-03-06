@@ -15,7 +15,8 @@ Post.prototype.save = function(callback){
 		year: date.getFullYear(),
 		month: date.getFullYear()+"-"+(date.getMonth()+1),
 		day: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate(),
-		day: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+(date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes())
+		minute: date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+(date.getMinutes()<10?'0'+date.getMinutes():date.getMinutes()),
+		iden: date.toString()
 	}
 
 
